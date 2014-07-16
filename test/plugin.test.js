@@ -3,7 +3,7 @@
 var chai = require("chai");
 var sinon = require("sinon");
 var expect = chai.expect;
-var plugin = require("../lib/Plugin.js");
+var plugin = require("../lib/plugin.js");
 
 var slice = Array.prototype.slice;
 
