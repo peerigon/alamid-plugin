@@ -48,8 +48,8 @@ describe("before", function () {
     
     it("should run without errors", function () {
         beforePlugin(obj);
-        obj.someMethod();
-        expect(spy).to.have.been.calledWithExactly(2);
+        obj.someMethod(0);
+        expect(spy).to.have.been.calledWithExactly(1);
     });
     
 });
@@ -60,22 +60,24 @@ describe("after", function () {
     before(function () {
         afterPlugin = require("../examples/after.js");
         obj = {
-            someMethod: function () {}
+            someMethod: function () {
+                return 0;
+            }
         };
     });
 
     it("should run without errors", function () {
         afterPlugin(obj);
-        expect(obj.someMethod(1)).to.equal(1);
+        expect(obj.someMethod()).to.equal(1);
     });
 
 });
 
-describe("beforeAsync", function () {
-    var beforeAsync, spy, obj;
+describe("override", function () {
+    var overridePlugin, spy, obj;
 
     before(function () {
-        beforeAsync = require("../examples/beforeAsync.js");
+        overridePlugin = require("../examples/override.js");
         obj = {
             someMethod: spy = sinon.spy()
         };
@@ -84,7 +86,7 @@ describe("beforeAsync", function () {
     it("should run without errors", function (done) {
         var result;
 
-        beforeAsync(obj);
+        overridePlugin(obj);
         result = obj.someMethod(2);
 
         expect(spy).to.not.have.been.called;
