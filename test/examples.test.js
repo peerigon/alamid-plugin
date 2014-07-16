@@ -70,3 +70,30 @@ describe("after", function () {
     });
 
 });
+
+describe("beforeAsync", function () {
+    var beforeAsync, spy, obj;
+
+    before(function () {
+        beforeAsync = require("../examples/beforeAsync.js");
+        obj = {
+            someMethod: spy = sinon.spy()
+        };
+    });
+
+    it("should run without errors", function (done) {
+        var result;
+
+        beforeAsync(obj);
+        result = obj.someMethod(2);
+
+        expect(spy).to.not.have.been.called;
+        expect(result).to.equal("intermediate result");
+
+        setTimeout(function () {
+            expect(spy).to.have.been.calledWithExactly(2);
+            done();
+        }, 10);
+    });
+
+});
