@@ -1,6 +1,6 @@
 alamid-plugin
 ========================================================================
-**Creates a plugin that can be consumed by the magic use()-function**
+**Provides tools for creating a plugin that can be consumed by the magic use()-function**
 
 Contributing
 ------------------------------------------------------------------------

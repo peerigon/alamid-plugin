@@ -1,7 +1,7 @@
 {
   "name": "alamid-plugin",
   "version": "0.1.0",
-  "description": "Creates a plugin that can be consumed by the magic use()-function",
+  "description": "Provides tools for creating a plugin that can be consumed by the magic use()-function",
   "main": "./lib/Plugin.js",
   "scripts": {
     "test": "node node_modules/mocha/bin/mocha -R spec",
