@@ -349,6 +349,60 @@ describe("fn's context", function () {
 
         });
 
+        describe(".define(key, value)", function () {
+
+            it("should define the property with the given key and value if it is undefined", function () {
+                createPlugin(function () {
+                    this(obj).define("someValue", 2);
+                    this(obj).define("someMethod", function () {
+                        return this.someValue;
+                    });
+                });
+                applyPlugin();
+                expect(obj).to.have.property("someValue", 2);
+                expect(obj).to.have.property("someMethod");
+                expect(obj.someMethod()).to.equal(2);
+            });
+
+            it("should throw an error if the property is already defined", function () {
+                createPlugin(function () {
+                    this(someObj).define("someValue", 2);
+                });
+                someObj.someValue = 1;
+                expect(function () {
+                    applyPlugin();
+                }).to.throw("Cannot define property 'someValue': There is already a property with value 1");
+            });
+
+            it("should take the whole prototype chain into account", function () {
+                var child = Object.create(someObj);
+
+                createPlugin(function () {
+                    this(child).define("someValue", 2);
+                });
+                someObj.someValue = 1;
+                expect(function () {
+                    applyPlugin();
+                }).to.throw("Cannot define property 'someValue': There is already a property with value 1");
+            });
+
+            it("should even work on undefined properties which aren't enumerable", function () {
+                var child = Object.create(someObj);
+
+                createPlugin(function () {
+                    this(child).define("someValue", 2);
+                });
+                Object.defineProperty(someObj, "someValue", {
+                    enumerable: false,
+                    writable: true
+                });
+                expect(function () {
+                    applyPlugin();
+                }).to.throw("Cannot define property 'someValue': There is already a property with value undefined");
+            });
+
+        });
+
     });
 
 });

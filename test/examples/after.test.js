@@ -6,10 +6,10 @@ var expect = chai.expect;
 chai.config.includeStack = true;
 
 describe("after", function () {
-    var afterPlugin, obj;
+    var afterExample, obj;
 
     before(function () {
-        afterPlugin = require("../../examples/after.js");
+        afterExample = require("../../examples/after.js");
         obj = {
             someMethod: function () {
                 return 0;
@@ -18,7 +18,7 @@ describe("after", function () {
     });
 
     it("should run without errors", function () {
-        afterPlugin(obj);
+        afterExample(obj);
         expect(obj.someMethod()).to.equal(1);
     });
 

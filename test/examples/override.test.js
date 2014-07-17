@@ -8,10 +8,10 @@ chai.config.includeStack = true;
 chai.use(require("sinon-chai"));
 
 describe("override", function () {
-    var overridePlugin, spy, obj;
+    var overrideExample, spy, obj;
 
     before(function () {
-        overridePlugin = require("../../examples/override.js");
+        overrideExample = require("../../examples/override.js");
         obj = {
             someMethod: spy = sinon.spy()
         };
@@ -20,7 +20,7 @@ describe("override", function () {
     it("should run without errors", function (done) {
         var result;
 
-        overridePlugin(obj);
+        overrideExample(obj);
         result = obj.someMethod(2);
 
         expect(spy).to.not.have.been.called;

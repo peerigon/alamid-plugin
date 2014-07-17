@@ -6,15 +6,15 @@ var expect = chai.expect;
 chai.config.includeStack = true;
 
 describe("setGet", function () {
-    var setGetPlugin, obj;
+    var setGetExample, obj;
 
     before(function () {
-        setGetPlugin = require("../../examples/setGet.js");
+        setGetExample = require("../../examples/setGet.js");
         obj = {};
     });
 
     it("should run without errors", function () {
-        setGetPlugin(obj);
+        setGetExample(obj);
         expect(obj.getNewNumber()).to.equal(2);
     });
 });
