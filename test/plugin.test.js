@@ -100,11 +100,20 @@ describe("fn's context", function () {
                 applyPlugin();
             });
 
-            it("should store the returned object under obj[pluginNamespace]", function () {
+            it("should store the returned object under obj['plugin/' + pluginNamespace]", function () {
                 createPlugin(function () {
-                    expect(this(obj).store()).to.equal(obj.testPlugin);
+                    expect(this(obj).store()).to.equal(obj["plugin/testPlugin"]);
                 });
                 applyPlugin();
+            });
+            
+            it("should make the store not enumerable", function () {
+                createPlugin(function () {
+                    this(obj).store();
+                });
+                applyPlugin();
+
+                expect(Object.keys(obj)).to.not.contain("plugin/testPlugin");
             });
 
             it("should return always the same object for obj", function () {
