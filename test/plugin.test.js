@@ -32,13 +32,12 @@ describe("plugin(namespace, fn)", function () {
     });
 
     describe("calling the returned function with (obj, config?)", function () {
-        var spy, newPlugin, obj, config;
+        var spy, newPlugin, obj;
 
         beforeEach(function () {
             spy = sinon.spy();
             newPlugin = plugin("testPlugin", spy);
             obj = {};
-            config = {};
         });
 
         it("should pass obj to fn", function () {
@@ -47,8 +46,16 @@ describe("plugin(namespace, fn)", function () {
         });
 
         it("should pass obj and config to fn", function () {
+            var config = {};
+
             newPlugin(obj, config);
             expect(spy).to.have.been.calledWith(obj, config);
+        });
+
+        it("should mark the obj so the plugin can't be applied twice on the same obj", function () {
+            newPlugin(obj);
+            newPlugin(obj);
+            expect(spy).to.have.been.calledOnce;
         });
 
     });

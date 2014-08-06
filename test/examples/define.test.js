@@ -10,6 +10,8 @@ describe("define", function () {
 
     before(function () {
         defineExample = require("../../examples/define.js");
+    });
+    beforeEach(function () {
         obj = {};
     });
 
