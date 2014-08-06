@@ -3,7 +3,7 @@
 var plugin = require("../lib/plugin.js");
 var simplePlugin;
 
-simplePlugin = plugin("peerigon/simple", function (obj) {
+simplePlugin = plugin(function (obj) {
     obj.newNumber = 2;
 });
 

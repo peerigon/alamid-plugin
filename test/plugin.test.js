@@ -18,17 +18,10 @@ describe("plugin", function () {
 
 });
 
-describe("plugin(namespace, fn)", function () {
+describe("plugin(fn)", function () {
 
     it("should return a function", function () {
-        expect(plugin("testPlugin", function () {})).to.be.a("function");
-    });
-
-    it("should throw an error if namespace is not a string", function () {
-        expect(function () {
-            // that's probably the most common error: we've forgotten to pass a namespace
-            plugin(function () {});
-        }).to.throw("Cannot create plugin: namespace should be a string, instead saw function");
+        expect(plugin(function () {})).to.be.a("function");
     });
 
     describe("calling the returned function with (obj, config?)", function () {
@@ -36,7 +29,7 @@ describe("plugin(namespace, fn)", function () {
 
         beforeEach(function () {
             spy = sinon.spy();
-            newPlugin = plugin("testPlugin", spy);
+            newPlugin = plugin(spy);
             obj = {};
         });
 
@@ -73,7 +66,7 @@ describe("fn's context", function () {
 
     function createPlugin(fn) {
         spy = sinon.spy(fn);
-        newPlugin = plugin("testPlugin", spy);
+        newPlugin = plugin(spy);
     }
 
     function applyPlugin() {
@@ -101,20 +94,13 @@ describe("fn's context", function () {
                 applyPlugin();
             });
 
-            it("should store the returned object under obj['plugin/' + pluginNamespace]", function () {
-                createPlugin(function () {
-                    expect(this(target).store()).to.equal(target["plugin/testPlugin"]);
-                });
-                applyPlugin();
-            });
-
             it("should make the store not enumerable", function () {
                 createPlugin(function () {
                     this(target).store();
                 });
                 applyPlugin();
 
-                expect(Object.keys(target)).to.not.contain("plugin/testPlugin");
+                expect(Object.keys(target)).to.eql([]);
             });
 
             it("should return always the same object for obj", function () {

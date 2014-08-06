@@ -3,7 +3,7 @@
 var plugin = require("../lib/plugin.js");
 var beforePlugin;
 
-beforePlugin = plugin("peerigon/before", function (obj) {
+beforePlugin = plugin(function (obj) {
     var self = this;
 
     this(obj).before("someMethod", function (number) {
