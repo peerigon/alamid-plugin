@@ -5,7 +5,7 @@ var expect = chai.expect;
 
 chai.config.includeStack = true;
 
-describe("after", function () {
+describe("examples/after", function () {
     var afterExample, obj;
 
     before(function () {

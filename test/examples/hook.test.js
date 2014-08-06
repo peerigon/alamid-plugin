@@ -7,7 +7,7 @@ var expect = chai.expect;
 chai.config.includeStack = true;
 chai.use(require("sinon-chai"));
 
-describe("hook", function () {
+describe("examples/hook", function () {
     var hookExample;
     var obj;
 

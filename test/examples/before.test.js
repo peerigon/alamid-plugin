@@ -7,7 +7,7 @@ var expect = chai.expect;
 chai.config.includeStack = true;
 chai.use(require("sinon-chai"));
 
-describe("before", function () {
+describe("examples/before", function () {
     var beforeExample, spy, obj;
 
     before(function () {

@@ -7,7 +7,7 @@ var expect = chai.expect;
 chai.config.includeStack = true;
 chai.use(require("sinon-chai"));
 
-describe("override", function () {
+describe("examples/override", function () {
     var overrideExample, spy, obj;
 
     before(function () {

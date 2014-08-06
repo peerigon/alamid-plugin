@@ -5,7 +5,7 @@ var expect = chai.expect;
 
 chai.config.includeStack = true;
 
-describe("define", function () {
+describe("examples/define", function () {
     var defineExample, obj;
 
     before(function () {
