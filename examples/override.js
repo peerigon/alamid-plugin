@@ -3,7 +3,7 @@
 var plugin = require("../lib/plugin.js");
 var overridePlugin;
 
-overridePlugin = plugin("peerigon/override-plugin", function (obj) {
+overridePlugin = plugin("peerigon/override", function (obj) {
     var pluginContext = this;
 
     this(obj).override("someMethod", function (number) {

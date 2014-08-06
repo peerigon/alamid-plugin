@@ -3,7 +3,7 @@
 var plugin = require("../lib/plugin.js");
 var storePlugin;
 
-storePlugin = plugin("peerigon/store-plugin", function (obj) {
+storePlugin = plugin("peerigon/store", function (obj) {
     var self = this;
 
     this(obj).store().newNumber = 2;

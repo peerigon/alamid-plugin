@@ -3,7 +3,7 @@
 var plugin = require("../lib/plugin.js");
 var afterPlugin;
 
-afterPlugin = plugin("peerigon/after-plugin", function (obj) {
+afterPlugin = plugin("peerigon/after", function (obj) {
     var self = this;
 
     this(obj).after("someMethod", function (result) {

@@ -3,7 +3,7 @@
 var plugin = require("../lib/plugin.js");
 var hookPlugin;
 
-hookPlugin = plugin("peerigon/hook-plugin", function (obj) {
+hookPlugin = plugin("peerigon/hook", function (obj) {
     this(obj).hook("someMethod", function () {
         this.message = "hi";
     });
