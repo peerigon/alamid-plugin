@@ -5,14 +5,13 @@ var expect = chai.expect;
 
 chai.config.includeStack = true;
 
-describe("setGet", function () {
+describe("store", function () {
     var setGetExample, obj;
 
     before(function () {
-        setGetExample = require("../../examples/setGet.js");
+        setGetExample = require("../../examples/store.js");
         obj = {};
     });
-
     it("should run without errors", function () {
         setGetExample(obj);
         expect(obj.getNewNumber()).to.equal(2);

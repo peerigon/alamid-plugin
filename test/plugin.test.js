@@ -85,35 +85,36 @@ describe("fn's context", function () {
             someObj = {};
         });
 
-        describe(".set(key, value)", function () {
-            
-            it("should store the value on someObj as namespace + '/' + key", function () {
+        describe(".store()", function () {
+
+            it("should return an object", function () {
                 createPlugin(function () {
-                    this(someObj).set("someKey", "some value");
-                    expect(someObj).to.have.property("testPlugin/someKey", "some value");
+                    expect(this(someObj).store()).to.be.an("object");
+                });
+                applyPlugin();
+            });
+
+            it("should store the returned object under someObj[pluginNamespace]", function () {
+                createPlugin(function () {
+                    expect(this(someObj).store()).to.equal(someObj.testPlugin);
+                });
+                applyPlugin();
+            });
+
+            it("should return always the same object for someObj", function () {
+                createPlugin(function () {
+                    expect(this(someObj).store()).to.equal(this(someObj).store());
+                });
+                applyPlugin();
+            });
+
+            it("should return different objects for different targets", function () {
+                createPlugin(function () {
+                    expect(this(someObj).store()).to.not.equal(this({}).store());
                 });
                 applyPlugin();
             });
             
-        });
-
-        describe(".get(key)", function () {
-
-            it("should return undefined if no value has been previously set", function () {
-                createPlugin(function () {
-                    expect(this(someObj).get("someKey")).to.be.undefined;
-                });
-                applyPlugin();
-            });
-
-            it("should return someValue if someValue has previously been set", function () {
-                createPlugin(function () {
-                    this(someObj).set("someKey", "some value");
-                    expect(this(someObj).get("someKey")).to.equal("some value");
-                });
-                applyPlugin();
-            });
-
         });
 
         describe(".before(key, preFn)", function () {
