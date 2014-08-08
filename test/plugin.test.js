@@ -62,7 +62,6 @@ describe("fn's context", function () {
     var spy;
     var newPlugin;
     var obj;
-    var otherObj;
 
     function createPlugin(fn) {
         spy = sinon.spy(fn);
