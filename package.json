@@ -1,18 +1,18 @@
 {
   "name": "alamid-plugin",
   "version": "0.1.0",
-  "description": "Provides tools for creating a plugin that can be consumed by the magic use()-function",
+  "description": "Monkey-patch everything™",
   "main": "./lib/plugin.js",
   "scripts": {
-    "test": "mocha -R spec",
+    "test": "mocha -R spec --recursive",
     "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha"
   },
   "keywords": [
     "alamid",
     "plugin",
     "interface",
-    "extend",
-    "proxy",
+    "monkey",
+    "patch",
     "override",
     "use"
   ],
